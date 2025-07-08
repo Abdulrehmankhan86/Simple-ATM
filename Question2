@@ -1,0 +1,74 @@
+# Multi User 
+users = {
+    "1001": ["0316", 10000],
+    "1002": ["1234", 7500],
+    "1003": ["2222", 5000],
+    "1004": ["5555", 8000]  
+}
+
+attempts = 0  
+
+while attempts < 3:
+    acc = input("Enter Account Number: ")
+    pin = input("Enter PIN: ")
+
+    if acc in users and users[acc][0] == pin:
+        print("Login Successful!")
+
+        
+        print("1. Proceed to Menu")
+        print("2. Exit")
+        login_choice = input("Enter your choice: ")
+
+        if login_choice == "1":
+            break  
+        elif login_choice == "2":
+            print("Thank you for visiting.")
+            exit()
+        else:
+            print("Invalid choice. Exiting.")
+            exit()
+
+    else:
+        attempts += 1
+        print(f"Incorrect Account Number or PIN. Attempts left: {3 - attempts}")
+
+else:
+    print("Account Locked due to 3 wrong attempts.")
+    exit()
+
+
+while True:
+    print("\n===== ATM MENU =====")
+    print("1. Check Balance")
+    print("2. Deposit Money")
+    print("3. Withdraw Money")
+    print("4. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        print(f"Your Balance: Rs {users[acc][1]}")
+
+    elif choice == "2":
+        amount = int(input("Enter deposit amount: "))
+        if amount > 0:
+            users[acc][1] += amount
+            print(f"Deposit Successful.  {users[acc][1]}")
+        else:
+            print("Invalid amount.")
+
+    elif choice == "3":
+        amount = int(input("Enter withdrawal amount: "))
+        if 0 < amount <= users[acc][1]:
+            users[acc][1] -= amount
+            print(f"Withdrawal Successful.:{users[acc][1]}")
+        else:
+            print("Insufficient balance.")
+
+    elif choice == "4":
+        print("Thank you for using ATM.")
+        exit()
+
+    else:
+        print(" Invalid option.")

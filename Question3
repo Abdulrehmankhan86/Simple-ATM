@@ -1,0 +1,40 @@
+# Simple ATM Machine using OOP
+class ATM:
+    def __init__(self,pin,balance):
+        self.__pin=pin
+        self.__balance=balance
+
+    def verify_pincode(self,enterpin):
+     return enterpin==self.__pin
+    
+    def Balance(self,enterpin):
+       if self.verify_pincode(enterpin):
+          return self.__balance
+       else:
+          print("Incorrect PIN")
+       
+    
+    def deposite(self,amount,enterpin):
+       if self.verify_pincode(enterpin):
+          if amount>0:
+                self.__balance+=amount
+                return f"Deposited{amount}"
+          else:
+            return "Invalid"
+       else:
+          return "Incorrect PIN"
+       
+    
+    def Withdraw(self,amount,enterpin):
+       if self.verify_pincode(enterpin):
+          if 0 <amount <= self.__balance:
+              self.__balance-=amount
+              return f"Withdraw Sucessfull{amount}"
+
+          else:
+             return"Insufficient Amount"
+
+obj=ATM("1234",10000)
+print(obj.Balance("1234"))
+print(obj.deposite(2000,"1234"))
+print(obj.Withdraw(1500,"1234"))
